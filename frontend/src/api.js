@@ -1,5 +1,7 @@
 const TOKEN_KEY = 'stockflow_token';
 
+const API_BASE = import.meta.env.VITE_API_URL || '/api';
+
 export const tokenStore = {
   get: () => localStorage.getItem(TOKEN_KEY),
   set: (t) => localStorage.setItem(TOKEN_KEY, t),
@@ -24,7 +26,7 @@ async function request(method, path, body) {
 
   let res;
   try {
-    res = await fetch(`/api${path}`, { method, headers, body: body ? JSON.stringify(body) : undefined });
+    res = await fetch(`${API_BASE}${path}`, { method, headers, body: body ? JSON.stringify(body) : undefined });
   } catch {
     throw new ApiError('Can’t reach the server. Check that the backend is running.', 0);
   }
