@@ -5,6 +5,7 @@ import {authMiddleware} from '../middleware/authMiddleware.js';
 const productRouter = Router();
 
 productRouter.get('/', authMiddleware, getAllProducts);
+productRouter.post('/:id/adjust', authMiddleware, updateProduct);
 productRouter.get('/:id', authMiddleware, getProductById);
 productRouter.post('/', authMiddleware, createProduct);
 productRouter.patch('/:id', authMiddleware, updateProduct);
